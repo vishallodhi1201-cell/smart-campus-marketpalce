@@ -1,0 +1,1058 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Marketplace</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <h2>CampusX Market</h2>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#products">Marketplace</a>
+      <a href="#ai">AI Suggestions</a>
+      <a href="#chat">Chat</a>
+      <button class="nav-btn" onclick="openSellModal()" id="sellBtn">📦 Sell Item</button>
+      <button class="nav-btn cart-btn" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+      <button class="nav-btn login-btn" onclick="openLoginModal()" id="loginBtn">Login</button>
+      <span id="userInfo" style="display:none;">
+        <span id="userName"></span>
+        <button class="nav-btn logout-btn" onclick="logout()">Logout</button>
+      </span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Smart Campus Marketplace</h1>
+
+      <p>
+        Buy, Sell, Rent and Exchange books, gadgets,
+        notes and essentials with verified students.
+      </p>
+
+      <button onclick="scrollToProducts()">Explore Items</button>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+        alt="students"/>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+
+    <div class="feature-card">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <h3>Buy & Sell</h3>
+      <p>Exchange resources securely inside campus.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-robot"></i>
+      <h3>AI Recommendations</h3>
+      <p>AI suggests useful items based on interests.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>Price Prediction</h3>
+      <p>Get fair pricing using condition & demand.</p>
+    </div>
+
+    <div class="feature-card">
+      <i class="fa-solid fa-user-check"></i>
+      <h3>Verified Students</h3>
+      <p>Only trusted student users allowed.</p>
+    </div>
+
+  </section>
+
+  <!-- MY LISTINGS -->
+  <section id="mylistings" class="my-listings-section">
+    <h2>My Listings</h2>
+    <div id="myListingsGrid" class="product-grid">
+      <p class="empty-msg">No items listed yet. Click "Sell Item" to get started!</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products-section">
+
+    <h2>Marketplace Items</h2>
+
+    <div class="product-grid">
+
+      <!-- CARD 1 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80"
+          alt="book">
+        <span class="seller-badge">Seller: John</span>
+        <h3>DSA Book</h3>
+
+        <p>Good Condition</p>
+
+        <h4>₹350</h4>
+        
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'DSA Book', price: 350, seller: 'John'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'DSA Book', price: 350, seller: 'John'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('John')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'DSA Book', price: 350, seller: 'John'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+          alt="laptop">
+        <span class="seller-badge">Seller: Sarah</span>
+        <h3>Laptop</h3>
+
+        <p>i5 10th Gen</p>
+
+        <h4>₹18,000</h4>
+        
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Laptop', price: 18000, seller: 'Sarah'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Laptop', price: 18000, seller: 'Sarah'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Sarah')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Laptop', price: 18000, seller: 'Sarah'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=900&q=80"
+          alt="notes">
+        <span class="seller-badge">Seller: Mike</span>
+        <h3>Engineering Notes</h3>
+
+        <p>Semester Notes PDF</p>
+
+        <h4>₹120</h4>
+        
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Engineering Notes', price: 120, seller: 'Mike'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Engineering Notes', price: 120, seller: 'Mike'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Mike')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Engineering Notes', price: 120, seller: 'Mike'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=900&q=80"
+          alt="headphones">
+        <span class="seller-badge">Seller: Emma</span>
+        <h3>Headphones</h3>
+
+        <p>Wireless Bluetooth</p>
+
+        <h4>₹900</h4>
+        
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Headphones', price: 900, seller: 'Emma'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Headphones', price: 900, seller: 'Emma'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Emma')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- SCIENCE BOOKS -->
+      <!-- CARD 5 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=900&q=80"
+          alt="physics book">
+        <span class="seller-badge">Seller: Alex</span>
+        <h3>University Physics</h3>
+        <p>Young & Freedman - Excellent Condition</p>
+        <h4>₹450</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'University Physics', price: 450, seller: 'Alex'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'University Physics', price: 450, seller: 'Alex'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Alex')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'University Physics', price: 450, seller: 'Alex'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=900&q=80"
+          alt="chemistry book">
+        <span class="seller-badge">Seller: Priya</span>
+        <h3>Organic Chemistry</h3>
+        <p>Morrison & Boyd - 6th Edition</p>
+        <h4>₹380</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Organic Chemistry', price: 380, seller: 'Priya'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Organic Chemistry', price: 380, seller: 'Priya'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Priya')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Organic Chemistry', price: 380, seller: 'Priya'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80"
+          alt="biology book">
+        <span class="seller-badge">Seller: Rohan</span>
+        <h3>Campbell Biology</h3>
+        <p>11th Edition - Almost New</p>
+        <h4>₹520</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Campbell Biology', price: 520, seller: 'Rohan'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Campbell Biology', price: 520, seller: 'Rohan'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Rohan')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Campbell Biology', price: 520, seller: 'Rohan'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 8 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=900&q=80"
+          alt="math book">
+        <span class="seller-badge">Seller: Lisa</span>
+        <h3>Calculus by Stewart</h3>
+        <p>8th Edition - Good Condition</p>
+        <h4>₹420</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Calculus by Stewart', price: 420, seller: 'Lisa'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Calculus by Stewart', price: 420, seller: 'Lisa'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Lisa')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Calculus by Stewart', price: 420, seller: 'Lisa'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 9 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+          alt="quantum physics">
+        <span class="seller-badge">Seller: David</span>
+        <h3>Introduction to Quantum Mechanics</h3>
+        <p>Griffiths - 2nd Edition</p>
+        <h4>₹480</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Introduction to Quantum Mechanics', price: 480, seller: 'David'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Introduction to Quantum Mechanics', price: 480, seller: 'David'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('David')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 10 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80"
+          alt="thermodynamics">
+        <span class="seller-badge">Seller: Maria</span>
+        <h3>Thermodynamics</h3>
+        <p>Cengel & Boles - 8th Edition</p>
+        <h4>₹460</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Thermodynamics', price: 460, seller: 'Maria'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Thermodynamics', price: 460, seller: 'Maria'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Maria')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 11 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=900&q=80"
+          alt="physical chemistry">
+        <span class="seller-badge">Seller: Kevin</span>
+        <h3>Physical Chemistry</h3>
+        <p>Atkins & Paula - 10th Edition</p>
+        <h4>₹500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Physical Chemistry', price: 500, seller: 'Kevin'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Physical Chemistry', price: 500, seller: 'Kevin'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Kevin')">💬 Contact</button>
+          <button class="rent-btn" onclick="rentItem({name: 'Physical Chemistry', price: 500, seller: 'Kevin'})">
+            🏷️ Rent
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 12 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1506976785307-8732c0a91e31?auto=format&fit=crop&w=900&q=80"
+          alt="molecular biology">
+        <span class="seller-badge">Seller: Sarah</span>
+        <h3>Molecular Biology of the Gene</h3>
+        <p>Watson et al. - 7th Edition</p>
+        <h4>₹550</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Molecular Biology of the Gene', price: 550, seller: 'Sarah'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Molecular Biology of the Gene', price: 550, seller: 'Sarah'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 13 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80"
+          alt="linear algebra">
+        <span class="seller-badge">Seller: Tom</span>
+        <h3>Linear Algebra and Its Applications</h3>
+        <p>Gilbert Strang - 5th Edition</p>
+        <h4>₹430</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Linear Algebra and Its Applications', price: 430, seller: 'Tom'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Linear Algebra and Its Applications', price: 430, seller: 'Tom'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 14 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1516910817561-8e1cc8c8ca18?auto=format&fit=crop&w=900&q=80"
+          alt="electrodynamics">
+        <span class="seller-badge">Seller: Nina</span>
+        <h3>Introduction to Electrodynamics</h3>
+        <p>Griffiths - 4th Edition</p>
+        <h4>₹470</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Introduction to Electrodynamics', price: 470, seller: 'Nina'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Introduction to Electrodynamics', price: 470, seller: 'Nina'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- ELECTRONICS ITEMS -->
+      <!-- CARD 15 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+          alt="smartphone">
+        <span class="seller-badge">Seller: Raj</span>
+        <h3>iPhone 12</h3>
+        <p>128GB - Excellent Condition</p>
+        <h4>₹35,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'iPhone 12', price: 35000, seller: 'Raj'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'iPhone 12', price: 35000, seller: 'Raj'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 16 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1516728778615-2d590ea1856f?auto=format&fit=crop&w=900&q=80"
+          alt="wireless earbuds">
+        <span class="seller-badge">Seller: Maya</span>
+        <h3>AirPods Pro</h3>
+        <p>Active Noise Cancellation</p>
+        <h4>₹18,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'AirPods Pro', price: 18000, seller: 'Maya'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'AirPods Pro', price: 18000, seller: 'Maya'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 17 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1518552784987-25f7d9ffb6b1?auto=format&fit=crop&w=900&q=80"
+          alt="smartwatch">
+        <span class="seller-badge">Seller: Arjun</span>
+        <h3>Apple Watch Series 7</h3>
+        <p>45mm GPS - Like New</p>
+        <h4>₹25,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Apple Watch Series 7', price: 25000, seller: 'Arjun'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Apple Watch Series 7', price: 25000, seller: 'Arjun'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 18 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80"
+          alt="tablet">
+        <span class="seller-badge">Seller: Karan</span>
+        <h3>iPad Air</h3>
+        <p>64GB WiFi - Perfect Condition</p>
+        <h4>₹32,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'iPad Air', price: 32000, seller: 'Karan'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'iPad Air', price: 32000, seller: 'Karan'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 19 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1516336015755-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+          alt="bluetooth speaker">
+        <span class="seller-badge">Seller: Priya</span>
+        <h3>JBL GO 3 Speaker</h3>
+        <p>Portable Waterproof Speaker</p>
+        <h4>₹2,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'JBL GO 3 Speaker', price: 2500, seller: 'Priya'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'JBL GO 3 Speaker', price: 2500, seller: 'Priya'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 20 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80"
+          alt="power bank">
+        <span class="seller-badge">Seller: Vikram</span>
+        <h3>Mi Power Bank 20000mAh</h3>
+        <p>Quick Charge 3.0 Support</p>
+        <h4>₹1,200</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Mi Power Bank 20000mAh', price: 1200, seller: 'Vikram'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Mi Power Bank 20000mAh', price: 1200, seller: 'Vikram'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 21 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1580910051072-45fbffc3e3da?auto=format&fit=crop&w=900&q=80"
+          alt="wireless charger">
+        <span class="seller-badge">Seller: Anjali</span>
+        <h3>Wireless Charging Pad</h3>
+        <p>Fast Wireless Charger 15W</p>
+        <h4>₹800</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Wireless Charging Pad', price: 800, seller: 'Anjali'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Wireless Charging Pad', price: 800, seller: 'Anjali'})">
+            ⚡ Buy Now
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 22 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1598448219917-4b41f5e2cda6?auto=format&fit=crop&w=900&q=80"
+          alt="smart band">
+        <span class="seller-badge">Seller: Rohit</span>
+        <h3>Mi Smart Band 6</h3>
+        <p>Fitness Tracker with SpO2</p>
+        <h4>₹1,800</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Mi Smart Band 6', price: 1800, seller: 'Rohit'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Mi Smart Band 6', price: 1800, seller: 'Rohit'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Rohit')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 23 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1515209084326-5d1fcc3e8c92?auto=format&fit=crop&w=900&q=80"
+          alt="gaming headset">
+        <span class="seller-badge">Seller: Deepak</span>
+        <h3>HyperX Cloud Stinger</h3>
+        <p>Gaming Headset with Mic</p>
+        <h4>₹3,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'HyperX Cloud Stinger', price: 3500, seller: 'Deepak'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'HyperX Cloud Stinger', price: 3500, seller: 'Deepak'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Deepak')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 24 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1527694224017-7659e1a3254a?auto=format&fit=crop&w=900&q=80"
+          alt="usb hub">
+        <span class="seller-badge">Seller: Sneha</span>
+        <h3>USB-C Hub</h3>
+        <p>7-in-1 Multiport Adapter</p>
+        <h4>₹1,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'USB-C Hub', price: 1500, seller: 'Sneha'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'USB-C Hub', price: 1500, seller: 'Sneha'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Sneha')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- DAILY USE ITEMS -->
+      <!-- CARD 25 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e9d1?auto=format&fit=crop&w=900&q=80"
+          alt="refrigerator">
+        <span class="seller-badge">Seller: Amit</span>
+        <h3>LG Double Door Fridge</h3>
+        <p>250L Capacity - 2 Years Old</p>
+        <h4>₹15,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'LG Double Door Fridge', price: 15000, seller: 'Amit'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'LG Double Door Fridge', price: 15000, seller: 'Amit'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Amit')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 26 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1481373797174-7bcad4b6dff9?auto=format&fit=crop&w=900&q=80"
+          alt="air conditioner">
+        <span class="seller-badge">Seller: Pooja</span>
+        <h3>Split AC 1.5 Ton</h3>
+        <p>Daikin Inverter AC - Working Perfect</p>
+        <h4>₹28,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Split AC 1.5 Ton', price: 28000, seller: 'Pooja'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Split AC 1.5 Ton', price: 28000, seller: 'Pooja'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Pooja')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 27 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80"
+          alt="washing machine">
+        <span class="seller-badge">Seller: Rahul</span>
+        <h3>Semi-Automatic Washing Machine</h3>
+        <p>7kg LG - Good Condition</p>
+        <h4>₹8,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Semi-Automatic Washing Machine', price: 8500, seller: 'Rahul'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Semi-Automatic Washing Machine', price: 8500, seller: 'Rahul'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Rahul')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 28 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1610847518852-a5dd339d6e38?auto=format&fit=crop&w=900&q=80"
+          alt="water cooler">
+        <span class="seller-badge">Seller: Meera</span>
+        <h3>Water Cooler</h3>
+        <p>Kent Grand Plus - Hot & Cold</p>
+        <h4>₹6,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Water Cooler', price: 6500, seller: 'Meera'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Water Cooler', price: 6500, seller: 'Meera'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Meera')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 29 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1491933382434-52c20aab8072?auto=format&fit=crop&w=900&q=80"
+          alt="ceiling fan">
+        <span class="seller-badge">Seller: Suresh</span>
+        <h3>Crompton Ceiling Fan</h3>
+        <p>1200mm - Energy Efficient</p>
+        <h4>₹1,800</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Crompton Ceiling Fan', price: 1800, seller: 'Suresh'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Crompton Ceiling Fan', price: 1800, seller: 'Suresh'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Suresh')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 30 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1512756290460-6d0a4e4f9862?auto=format&fit=crop&w=900&q=80"
+          alt="microwave oven">
+        <span class="seller-badge">Seller: Kavita</span>
+        <h3>Microwave Oven</h3>
+        <p>IFB 30L Convection - Like New</p>
+        <h4>₹7,200</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Microwave Oven', price: 7200, seller: 'Kavita'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Microwave Oven', price: 7200, seller: 'Kavita'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Kavita')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 31 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=80"
+          alt="gas stove">
+        <span class="seller-badge">Seller: Ramesh</span>
+        <h3>Gas Stove</h3>
+        <p>Prestige 3 Burner - 6 Months Old</p>
+        <h4>₹3,200</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Gas Stove', price: 3200, seller: 'Ramesh'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Gas Stove', price: 3200, seller: 'Ramesh'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Ramesh')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 32 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1572294566273-cbc8f2f46cfc?auto=format&fit=crop&w=900&q=80"
+          alt="air purifier">
+        <span class="seller-badge">Seller: Neha</span>
+        <h3>Air Purifier</h3>
+        <p>Philips AC2887 - HEPA Filter</p>
+        <h4>₹12,000</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Air Purifier', price: 12000, seller: 'Neha'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Air Purifier', price: 12000, seller: 'Neha'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Neha')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 33 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80"
+          alt="room heater">
+        <span class="seller-badge">Seller: Vijay</span>
+        <h3>Room Heater</h3>
+        <p>Bajaj Oil Filled Radiator 2000W</p>
+        <h4>₹2,800</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Room Heater', price: 2800, seller: 'Vijay'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Room Heater', price: 2800, seller: 'Vijay'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Vijay')">💬 Contact</button>
+        </div>
+      </div>
+
+      <!-- CARD 34 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1501973801540-537f08ccae7e?auto=format&fit=crop&w=900&q=80"
+          alt="vacuum cleaner">
+        <span class="seller-badge">Seller: Sunita</span>
+        <h3>Vacuum Cleaner</h3>
+        <p>Eureka Forbes Quick Clean - Bagless</p>
+        <h4>₹4,500</h4>
+        <div class="card-actions">
+          <button class="cart-btn" onclick="addToCart({name: 'Vacuum Cleaner', price: 4500, seller: 'Sunita'})">
+            🛒 Add to Cart
+          </button>
+          <button class="buy-btn" onclick="buyNow({name: 'Vacuum Cleaner', price: 4500, seller: 'Sunita'})">
+            ⚡ Buy Now
+          </button>
+          <button class="chat-btn" onclick="contactSeller('Sunita')">💬 Contact</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AI SECTION -->
+ <section id="ai" class="ai-section">
+
+  <h2>Campus AI Assistant</h2>
+
+  <div class="ai-box">
+
+    <div id="aiChatHistory" class="ai-chat-history">
+      <div class="ai-message ai-welcome">
+        <div class="message-avatar">🤖</div>
+        <div class="message-content">
+          <div class="message-text">Hi! I'm your Campus AI Assistant. I can help you find products, give recommendations, and answer questions about campus marketplace. What can I help you with today?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-input-area">
+      <input
+        type="text"
+        id="interestInput"
+        placeholder="Ask anything... Example: Suggest me best physics books"
+        onkeypress="handleKeyPress(event)"/>
+
+      <button onclick="sendMessageToAI()">
+        Send
+      </button>
+
+      <button onclick="clearAIChat()" class="clear-chat-btn">
+        🗑️ Clear
+      </button>
+    </div>
+
+  </div>
+
+</section>
+  </section>
+
+  <!-- PRICE PREDICTOR -->
+  <section class="predict-section">
+
+    <h2>AI Price Prediction</h2>
+
+    <div class="predict-box">
+
+      <select id="condition">
+        <option value="new">New</option>
+        <option value="good">Good</option>
+        <option value="old">Old</option>
+      </select>
+
+      <select id="demand">
+        <option value="high">High Demand</option>
+        <option value="medium">Medium Demand</option>
+        <option value="low">Low Demand</option>
+      </select>
+
+      <button onclick="predictPrice()">
+        Predict Price
+      </button>
+
+      <h3 id="priceResult"></h3>
+
+    </div>
+  </section>
+
+  <!-- CHAT -->
+  <section id="chat" class="chat-section">
+
+    <h2>Student Chat & Meetup</h2>
+    <div id="sellerChatHeader" class="chat-section-header">Seller Chat: Select a product and click 💬 Contact</div>
+
+    <div class="chat-box" id="chatBox">
+
+      <div class="message">
+        Seller: Meet near library at 4 PM
+      </div>
+
+    </div>
+
+    <div class="chat-input">
+
+      <input type="text"
+        id="chatInput"
+        placeholder="Type message"
+        onkeypress="handleSellerChatKeyPress(event)"/>
+
+      <button onclick="sendMessage()">
+        Send
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- SELL MODAL -->
+  <div id="sellModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeSellModal()">&times;</span>
+      <h2>📦 List Item for Sale</h2>
+      
+      <form id="sellForm">
+        <input type="text" id="itemName" placeholder="Item Name" required>
+        <textarea id="itemDesc" placeholder="Description" required></textarea>
+        <input type="number" id="itemPrice" placeholder="Price (₹)" required>
+        <select id="itemCondition" required>
+          <option value="">Select Condition</option>
+          <option value="new">New</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+        </select>
+        <input type="text" id="itemCategory" placeholder="Category (Book, Gadget, etc)" required>
+        <label for="itemImage" style="font-size:14px; color:#334155;">Upload item photo (optional)</label>
+        <input type="file" id="itemImage" accept="image/*" style="padding:10px; border:1px solid #ddd; border-radius:10px; font-size:14px;">
+        <button type="submit" class="submit-btn">List Item</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CART MODAL -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content cart-modal-content">
+      <span class="close" onclick="closeCart()">&times;</span>
+      <h2>🛒 Shopping Cart</h2>
+      
+      <div id="cartItems"></div>
+      
+      <div class="cart-summary">
+        <h3>Total: ₹<span id="cartTotal">0</span></h3>
+        <button onclick="proceedToCheckout()" class="checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>🔐 Login to CampusX Market</h2>
+      
+      <div class="auth-tabs">
+        <button class="tab-btn active" onclick="showLoginTab()">Login</button>
+        <button class="tab-btn" onclick="showSignupTab()">Sign Up</button>
+      </div>
+      
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="auth-form">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button onclick="loginUser()" class="auth-submit-btn">Login</button>
+        <p class="auth-error" id="loginError"></p>
+      </div>
+      
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" class="auth-form" style="display:none;">
+        <input type="text" id="signupName" placeholder="Full Name" required>
+        <input type="email" id="signupEmail" placeholder="Email" required>
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <input type="text" id="signupStudentId" placeholder="Student ID" required>
+        <button onclick="signupUser()" class="auth-submit-btn">Sign Up</button>
+        <p class="auth-error" id="signupError"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RENTAL MODAL -->
+  <div id="rentalModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeRentalModal()">&times;</span>
+      <h2>🏷️ Rent Item</h2>
+      
+      <form id="rentalForm">
+        <p><strong>Item:</strong> <span id="rentalItemName"></span></p>
+        <p><strong>Price per day:</strong> ₹<span id="rentalItemPrice"></span></p>
+        <p><strong>Seller:</strong> <span id="rentalItemSeller"></span></p>
+        
+        <label for="rentalDays">Rental Duration (days):</label>
+        <input type="number" id="rentalDays" placeholder="Number of days" min="1" required>
+        
+        <label for="rentalStartDate">Start Date:</label>
+        <input type="date" id="rentalStartDate" required>
+        
+        <label for="rentalNotes">Additional Notes (optional):</label>
+        <textarea id="rentalNotes" placeholder="Any special requests?" style="height:80px;"></textarea>
+        
+        <button type="submit" class="submit-btn">Confirm Rental</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- EDIT LISTING MODAL -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditModal()">&times;</span>
+      <h2>✏️ Edit Listing</h2>
+      
+      <form id="editForm">
+        <input type="text" id="editItemName" placeholder="Item Name" required>
+        <textarea id="editItemDesc" placeholder="Description" required></textarea>
+        <input type="number" id="editItemPrice" placeholder="Price (₹)" required>
+        <select id="editItemCondition" required>
+          <option value="">Select Condition</option>
+          <option value="new">New</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+        </select>
+        <input type="text" id="editItemCategory" placeholder="Category" required>
+        <button type="submit" class="submit-btn">Update Listing</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content checkout-modal-content">
+      <span class="close" onclick="closeCheckoutModal()">&times;</span>
+      <h2>💳 Checkout</h2>
+      
+      <div class="checkout-sections">
+        <!-- CART SUMMARY -->
+        <div class="checkout-section">
+          <h3>Order Summary</h3>
+          <div id="checkoutItems"></div>
+          <div class="checkout-total">
+            <h4>Total: ₹<span id="checkoutTotal">0</span></h4>
+          </div>
+        </div>
+        
+        <!-- DELIVERY INFO -->
+        <div class="checkout-section">
+          <h3>Delivery Information</h3>
+          <form id="deliveryForm">
+            <input type="text" id="deliveryName" placeholder="Full Name" required>
+            <input type="text" id="deliveryPhone" placeholder="Phone Number" required>
+            <input type="text" id="deliveryAddress" placeholder="Hostel/Room Number" required>
+            <input type="text" id="deliveryLandmark" placeholder="Landmark (Optional)">
+            <select id="deliveryTime" required>
+              <option value="">Preferred Delivery Time</option>
+              <option value="morning">Morning (9 AM - 12 PM)</option>
+              <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+              <option value="evening">Evening (5 PM - 8 PM)</option>
+            </select>
+          </form>
+        </div>
+        
+        <!-- PAYMENT INFO -->
+        <div class="checkout-section">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cash" checked>
+              <span>💵 Cash on Delivery</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="upi">
+              <span>📱 UPI Payment</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="card">
+              <span>💳 Card Payment</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="checkout-actions">
+        <button onclick="placeOrder()" class="place-order-btn">Place Order</button>
+        <button onclick="closeCheckoutModal()" class="cancel-order-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>CampusX Marketplace © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
